@@ -1,5 +1,7 @@
 package sort
 
+import "sort"
+
 // BubbleSort will sort a list of integers using the bubble sort algorithm.
 func BubbleSort(list []int) {
 	len := len(list)
@@ -16,4 +18,9 @@ func BubbleSort(list []int) {
 			break
 		}
 	}
+}
+
+// GoodSort uses golang sort
+func GoodSort(list []int) {
+	sort.Ints(list)
 }
