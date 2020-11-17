@@ -1,20 +1,23 @@
 package sort
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 //whitebox testing because it's inside the same package
 
 func TestBubbleSort(t *testing.T) {
 	elements := []int{9, 7, 5, 3, 1, 2, 4, 6, 8, 0}
+
+	assert.NotNil(t, elements)
+	assert.EqualValues(t, 10, len(elements))
+
 	BubbleSort(elements)
 
-	if elements[0] != 0 {
-		t.Error("Expected first element to be 0. Got", elements[0])
-	}
-
-	if elements[len(elements)-1] != 9 {
-		t.Error("Expected last element to be 9. Got", elements[len(elements)-1])
-	}
+	assert.EqualValues(t, 0, elements[0])
+	assert.EqualValues(t, 9, elements[len(elements)-1])
 }
 
 func TestGoodSort(t *testing.T) {
