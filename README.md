@@ -6,3 +6,5 @@ for the udemy course
 go test -bench=.
 
 go test --cover
+
+### app architecture 

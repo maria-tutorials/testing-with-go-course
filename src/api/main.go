@@ -1,15 +1,7 @@
 package main
 
-import (
-	"fmt"
-
-	"./providers/locations_provider"
-)
+import "./app"
 
 func main() {
-	country, err := locations_provider.GetCountry("AR")
-
-	fmt.Println(err)
-
-	fmt.Println(country)
+	app.Start()
 }
