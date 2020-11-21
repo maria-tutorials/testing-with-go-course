@@ -3,6 +3,8 @@ package sqlclient
 import (
 	"database/sql"
 	"errors"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 type client struct {
@@ -12,7 +14,7 @@ type client struct {
 type row struct{}
 
 type SqlClient interface {
-	Query(query string, args ...interface{}) (*row, error)
+	Query(query string, args ...interface{}) (*sqlRows, error)
 }
 
 func Open(driverName, dataSourceName string) (SqlClient, error) {
@@ -30,6 +32,16 @@ func Open(driverName, dataSourceName string) (SqlClient, error) {
 	return client, nil
 }
 
-func (c client) Query(query string, args ...interface{}) (*row, error) {
-	return nil, nil
+func (c client) Query(query string, args ...interface{}) (*sqlRows, error) {
+	rrows, err := c.db.Query(query, args...)
+
+	if err != nil {
+		return nil, err
+	}
+
+	result := sqlRows{
+		rows: rrows,
+	}
+
+	return &result, nil
 }
